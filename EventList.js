@@ -31,10 +31,11 @@ class EventList extends Component {
       });
     }, 1000);
 
-    getEvents().then(events => {
-      this.setState( {events} );
-      console.log("events", events);
-    });
+    this.props.navigation.addListener('didFocus', () => {
+      getEvents().then(events => this.setState( {events} ));
+    })
+
+    
 
     /*
     const events = require('./db.json').events.map(e => ({
